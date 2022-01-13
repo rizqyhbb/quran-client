@@ -1,16 +1,18 @@
+import classNames from "classnames";
 import { Component, ReactNode } from "react";
 
 interface IButtonProps {
-  clickHandler: () => void
+  clickHandler?: () => void
   children: ReactNode
+  className?: string
 }
 
 class Button extends Component<IButtonProps, {}> {
-  render(){
-    return(
-    <button className="h-5 px-5 rounded-full text-grey bg-blue-400 text-white hover:bg-blue-500" type="button" onClick={this.props.clickHandler}>
-      {this.props.children}
-    </button>
+  render() {
+    return (
+      <button className={classNames("h-14 font-extrabold px-7 rounded-full bg-amber-400 text-white hover:bg-amber-400", this.props.className)} type="button" onClick={this.props.clickHandler}>
+        {this.props.children}
+      </button>
     )
   }
 }
