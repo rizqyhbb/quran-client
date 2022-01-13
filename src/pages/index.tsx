@@ -10,7 +10,7 @@ const HomePage = () => {
         <title>Quran App</title>
         <meta name="keywords" content="quran app" />
       </Head>
-      <div className="text-center h-screen flex flex-col justify-center items-center">
+      <div className="container px-5 text-center h-screen flex flex-col justify-center items-center">
         <h1 className="font-extrabold text-3xl text-violet-700">Quran App</h1>
         <br />
         <p className="text-lg font-light">Read Quran everyday</p>

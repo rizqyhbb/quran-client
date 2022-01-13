@@ -1,7 +1,9 @@
 
 import { Component } from "react";
 import Link from "next/link";
-import { Table } from "../components";
+import Head from "next/head";
+import Image from "next/image";
+import { Table, Navbar, Card, Footer } from "../components";
 import axios from 'axios';
 
 interface IAboutState {
@@ -25,21 +27,50 @@ class Chapter extends Component<{}, IAboutState>{
   }
 
   render() {
-    return(
-      <div className="flex">
-      <Table className="flex-auto">
-        <tbody>
-          {this.state.chapters.map((chapter: any) => 
-              <Link key={chapter.id} passHref={true} href={`surah/${chapter.id}`}>
-                <tr>
-                  <td className="text-center bg-amber-200">{chapter.id}</td>
-                  <td>{chapter.name_simple}</td>
-                  <td className="text-center">{chapter.verses_count}</td>
-                </tr>
-              </Link>
-          )}
-        </tbody>
-      </Table>
+    return (
+      <div>
+        <Head>
+          <title>Quran App</title>
+          <meta name="keywords" content="quran app" />
+        </Head>
+        <div className=" container px-5" >
+          <Navbar />
+          <h1 className=" text-slate-400">Assalamualaikum</h1>
+          <Card className=" py-5 my-5 px-5 relative">
+            <p className="text-white font-medium">Last Read</p>
+            <br />
+            <p className="text-white font-bold text-xl">Al-Fatiha</p>
+            <p className="text-white ">Ayah No: 1</p>
+            <div className="absolute bottom-0 right-0">
+              <Image src="/quran.png" alt="quran image" width={173} height={97} />
+            </div>
+          </Card>
+          <div className="flex">
+            <Table className="flex-auto">
+              <tbody>
+                {this.state.chapters.map((chapter: any) =>
+                  <Card key={chapter.id} className=" bg-none py-1 border-b-2">
+                    <Link passHref={true} href={`surah/${chapter.id}`}>
+                      <div className="px-5 flex items-center">
+                        <div className="flex-none">
+                          <p>{chapter.id}</p>
+                        </div>
+                        <div className="flex-none px-5">
+                          <p className="font-bold">{chapter.name_simple}</p>
+                          <p className=" font-light text-sm">{chapter.verses_count} verses</p>
+                        </div>
+                        <div className="flex-auto text-right text-violet-500 text-2xl">
+                          <p>{chapter.name_arabic}</p>
+                        </div>
+                      </div>
+                    </Link>
+                  </Card>
+                )}
+              </tbody>
+            </Table>
+          </div>
+        </div>
+        <Footer />
       </div>
     )
   }
