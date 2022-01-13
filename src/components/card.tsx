@@ -12,7 +12,7 @@ const Card = ({
   children
 }: ICard) => {
   return (
-    <div className={classNames('w-full rounded-xl bg-gradient-to-tr from-violet-500 to-fuchsia-500', className)}>
+    <div className={classNames('w-full rounded-xl', className)}>
       {children}
     </div>
   )
