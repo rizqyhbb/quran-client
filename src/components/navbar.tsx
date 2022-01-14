@@ -1,4 +1,4 @@
-import { BsArrowLeftCircle } from "react-icons/bs"
+import { BsArrowLeft } from "react-icons/bs"
 import Link from "next/link";
 
 interface INavbar {
@@ -10,7 +10,7 @@ const Navbar = ({ href }: INavbar) => {
     <div className="py-5 flex items-center">
       <div className=" mr-3">
         <Link href={href} passHref={true}>
-          <BsArrowLeftCircle className=" text-violet-300 text-xl" />
+          <BsArrowLeft className=" text-violet-300 text-2xl" />
         </Link>
       </div>
       <div>
