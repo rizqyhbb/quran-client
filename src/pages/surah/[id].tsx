@@ -30,6 +30,9 @@ export const getStaticProps = async (context: any) => {
   }
 
 }
+const getVerse = (str: string) => {
+  return str.split(':')[1];
+}
 
 const SurahById = ({ verses }: IVerses) => {
 
@@ -45,9 +48,9 @@ const SurahById = ({ verses }: IVerses) => {
           {verses.map((verse: any) =>
             <Card key={verse.id} className="py-3 border-b-2">
               <div className="flex px-5 items-center">
-                <div className="text-xs">
+                <div className=" text-xs">
                   <Marker>
-                    {verse.id}
+                    {getVerse(verse.verse_key)}
                   </Marker>
                 </div>
                 <div className="flex-auto text-right font-light text-xl pl-3">
