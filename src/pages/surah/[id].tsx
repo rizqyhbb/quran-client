@@ -1,48 +1,64 @@
-import { Component, useCallback, useEffect, useState } from "react";
-import { Table } from "../../components";
-import { useRouter, withRouter ,NextRouter } from "next/router";
+import { Table, Navbar, Card, Marker } from "../../components";
+import Head from "next/head";
 import axios from "axios";
-import { getServers } from "dns";
 
+interface IVerses {
+  verses: object[]
+}
 
-const SurahById = () => {
-const router = useRouter();
-const [verse, setVerse] = useState<any>([])
-const {id} = router.query
-
-
-
-useEffect(() => {
-  if(!id){
-    return;
-  } else{
-    const getVerses = async() => {
-      const response = await axios.get(`${process.env.NEXT_PUBLIC_API}/quran/verses/uthmani?chapter_number=${id} `)
-      return setVerse(response.data.verses)
+export const getStaticPaths = async () => {
+  const response: any = await axios.get(`${process.env.NEXT_PUBLIC_API}/chapters?language=en`)
+  const data = await response.data.chapters
+  const paths = data.map((chapter: any) => {
+    return {
+      params: { id: chapter.id.toString() }
     }
-    getVerses()
+  })
+
+  return {
+    paths,
+    fallback: false
   }
-}, [id])  
-  
-  
-  return(
+}
+
+export const getStaticProps = async (context: any) => {
+  const id = context.params.id;
+  const response = await axios.get(`${process.env.NEXT_PUBLIC_API}/quran/verses/uthmani?chapter_number=${id}`)
+
+  return {
+    props: { verses: response.data.verses }
+  }
+
+}
+
+const SurahById = ({ verses }: IVerses) => {
+
+  return (
     <div>
-    <Table className=" bg-amber-100">
-      <thead>
-      {verse.map((verse: any) => 
-        verse.id%2 ? 
-        <tr key={verse.id} className="text-right border-y-4 border-amber-100">
-        <td className="flex justify-center">{verse.verse_key} </td>
-        <td className="text-right bg-amber-200 pr-2 text-2xl py-3 rounded-l-2xl">{verse.text_uthmani}</td>
-        </tr> :
-        <tr key={verse.id} className="text-right border-y-4 border-amber-100">
-        <td className="flex justify-center">{verse.verse_key}</td>
-        <td className="text-right bg-amber-300 pr-2 text-2xl py-3 rounded-l-2xl">{verse.text_uthmani}</td>
-        </tr>
-        )}
-        </thead>
-      </Table>
-  </div>
+      <Head>
+        <title>Quran App | Verse</title>
+        <meta name="keywords" content="quran app" />
+      </Head>
+      <div className="container px-5">
+        <Navbar href="/chapter" />
+        <div>
+          {verses.map((verse: any) =>
+            <Card key={verse.id} className="py-3 border-b-2">
+              <div className="flex px-5 items-center">
+                <div className="text-xs">
+                  <Marker>
+                    {verse.id}
+                  </Marker>
+                </div>
+                <div className="flex-auto text-right font-light text-xl pl-3">
+                  <p>{verse.text_uthmani}</p>
+                </div>
+              </div>
+            </Card>
+          )}
+        </div>
+      </div>
+    </div>
   )
 }
 
