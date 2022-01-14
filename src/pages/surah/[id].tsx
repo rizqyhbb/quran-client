@@ -1,4 +1,4 @@
-import { Table, Navbar, Card, Marker } from "../../components";
+import { Footer, Navbar, Card, Marker } from "../../components";
 import Head from "next/head";
 import axios from "axios";
 
@@ -60,6 +60,7 @@ const SurahById = ({ verses }: IVerses) => {
             </Card>
           )}
         </div>
+        <Footer />
       </div>
     </div>
   )
