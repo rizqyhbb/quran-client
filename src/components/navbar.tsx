@@ -8,9 +8,9 @@ interface INavbar {
 const Navbar = ({ href }: INavbar) => {
   return (
     <div className="py-5 flex items-center">
-      <div className=" mr-3">
+      <div className=" mr-3 hover:cursor-pointer ">
         <Link href={href} passHref={true}>
-          <BsArrowLeft className=" text-violet-300 text-2xl" />
+          <BsArrowLeft className=" text-violet-300 text-2xl hover:text-stone-400" />
         </Link>
       </div>
       <div>

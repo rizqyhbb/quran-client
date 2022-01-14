@@ -12,7 +12,7 @@ const Card = ({
   children
 }: ICard) => {
   return (
-    <div className={classNames('w-full rounded-xl', className)}>
+    <div className={classNames('w-full rounded-xl hover:bg-neutral-100 ', className)}>
       {children}
     </div>
   )

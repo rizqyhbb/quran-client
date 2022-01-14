@@ -16,7 +16,7 @@ const HomePage = () => {
         <br />
         <div className="flex justify-center relative">
           <Image src="/quranapp-logo.png" alt="quran app logo" width={314} height={450} layout="fixed" />
-          <div className="absolute -bottom-5 bg-amber-400 h-14 rounded-full px-7 flex items-center text-white text-lg font-bold">
+          <div className="absolute -bottom-5 bg-amber-400 h-14 rounded-full px-7 flex items-center text-white text-lg font-bold hover:bg-amber-500">
             <Link href="/chapter" >
               Get Started
             </Link>
