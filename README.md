@@ -1,6 +1,6 @@
 ## About This Project
 
-This project is my first trial on `Next.js` and `Tailwind.css`. This is quite fast to create and deploy on `Vercel`
+This project is my first trial on `Next.js` and `Tailwind.css`. This is quite fast to create and deploy on `Vercel` but this is still in mobile size. Next time I'll be back here and do some improvement
 
 ### Deployed App
 ```
