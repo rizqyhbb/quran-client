@@ -42,21 +42,23 @@ const SurahById = ({ verses }: IVerses) => {
         <title>Quran App | Verse</title>
         <meta name="keywords" content="quran app" />
       </Head>
-      <div className="container px-5">
+      <div className="container">
         <Navbar href="/chapter" />
         <div>
           {verses.map((verse: any) =>
             <Card key={verse.id} className="py-3 border-b-2">
-              <div className="flex px-5 items-center">
-                <div className=" text-xs">
-                  <Marker>
-                    {getVerse(verse.verse_key)}
-                  </Marker>
+              <a onClick={() => window.localStorage.setItem("verse", `${getVerse(verse.verse_key)}`)}>
+                <div className="flex px-5 items-center">
+                  <div className=" text-xs">
+                    <Marker>
+                      {getVerse(verse.verse_key)}
+                    </Marker>
+                  </div>
+                  <div className="flex-auto text-right font-light text-xl pl-3">
+                    <p>{verse.text_uthmani}</p>
+                  </div>
                 </div>
-                <div className="flex-auto text-right font-light text-xl pl-3">
-                  <p>{verse.text_uthmani}</p>
-                </div>
-              </div>
+              </a>
             </Card>
           )}
         </div>
